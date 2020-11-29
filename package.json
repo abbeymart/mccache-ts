@@ -4,7 +4,7 @@
   "description": "In-Memory Caching",
   "main": "./lib/index.js",
   "scripts": {
-    "start": "nodemon ./index.ts",
+    "start": "nodemon index.ts",
     "tsc": "tsc -w",
     "build": "tsc -p .",
     "refresh": "rm -rf ./node_modules ./package-lock.json && npm install",

@@ -10,7 +10,6 @@ pids
 # Dependency directory
 # https://docs.npmjs.com/cli/shrinkwrap#caveats
 node_modules
-config/secure
 src/config/secure
 # config/constants.json
 
@@ -21,7 +20,5 @@ mochawesome-report
 .vscode
 /public/
 public
-dist
-lib
 
 project.md
