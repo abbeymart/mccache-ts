@@ -1,5 +1,5 @@
 {
-  "name": "mc-cache",
+  "name": "mccache",
   "version": "0.2.0",
   "description": "In-Memory Caching",
   "main": "./lib/index.js",
