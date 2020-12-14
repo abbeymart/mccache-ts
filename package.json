@@ -18,12 +18,14 @@
     "url": "git+https://github.com/abbeymart/mccache-ts.git"
   },
   "keywords": [
-    "testing",
-    "test cases",
-    "test scenarios",
-    "unit testing",
-    "regression testing",
-    "integration testing"
+    "cache",
+    "caching",
+    "in-memory cache",
+    "in-memory caching",
+    "key-value cache",
+    "key-hash-value cache",
+    "query cache",
+    "content cache"
   ],
   "author": "Abi Akindele [abbeymart | mconnect.biz]",
   "license": "MIT",
@@ -32,6 +34,7 @@
   },
   "homepage": "https://github.com/abbeymart/mccache-ts#readme",
   "devDependencies": {
+    "@mconnect/mctest": "^0.2.7",
     "@types/node": "^14.14.13",
     "typescript": "^4.1.3"
   }

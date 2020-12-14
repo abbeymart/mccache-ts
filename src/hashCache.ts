@@ -6,28 +6,28 @@
  */
 
 // types
-import { ValueType, HashValueType, HashCacheValueType, CacheResponse } from "./config/cacheTypes";
+import { ValueType, CacheValueType, HashCacheValueType, CacheResponseType } from "./types";
 
 // Initialise cache object/dictionary (map)
 let mcCache = new Map<string, HashCacheValueType>();
 
 // secret keyCode for added security
-const keyCode = 'mcconnect_20200320';
+const keyCode = "mcconnect_20200320";
 
-export function setHashCache(key: string, hash: string, value: ValueType, expire: number = 300): CacheResponse {
+export function setHashCache(key: string, hash: string, value: ValueType, expire: number = 300): CacheResponseType {
     // key and value: key:string, hash: string, value:Value, expire:time(seconds)
     try {
         if (!key || !hash || !value) {
             return {
                 ok     : false,
-                message: 'cache key, hash and value are required',
+                message: "cache key, hash and value are required",
             }
         }
         const cacheKey = key + keyCode;
         const hashKey = hash + keyCode;
 
         if (!mcCache.has(cacheKey)) {
-            mcCache.set(cacheKey, new Map<string, HashValueType>());
+            mcCache.set(cacheKey, new Map<string, CacheValueType>());
         }
         if (mcCache.has(cacheKey) && !mcCache.get(cacheKey)?.has(hashKey)) {
             mcCache.get(cacheKey)?.set(hashKey, {});
@@ -36,23 +36,23 @@ export function setHashCache(key: string, hash: string, value: ValueType, expire
         mcCache.get(cacheKey)?.set(hashKey, hashValue);
         return {
             ok     : true,
-            message: 'task completed successfully',
+            message: "task completed successfully",
             value  : mcCache.get(cacheKey)?.get(hashKey)?.value,
         }
     } catch (e) {
         return {
             ok     : false,
-            message: e.message ? e.message : 'error creating/setting cache information',
+            message: e.message ? e.message : "error creating/setting cache information",
         }
     }
 }
 
-export function getHashCache(key: string, hash: string): CacheResponse {
+export function getHashCache(key: string, hash: string): CacheResponseType {
     try {
         if (!key || !hash) {
             return {
                 ok     : false,
-                message: 'key and hash-key are required',
+                message: "key and hash-key are required",
             }
         }
         const cacheKey = key + keyCode;
@@ -63,7 +63,7 @@ export function getHashCache(key: string, hash: string): CacheResponse {
             if (cValue && cValue.expire && cValue.expire > Date.now()) {
                 return {
                     ok     : true,
-                    message: 'task completed successfully',
+                    message: "task completed successfully",
                     value  : mcCache.get(cacheKey)?.get(hashKey)?.value,
                 }
             } else {
@@ -71,73 +71,73 @@ export function getHashCache(key: string, hash: string): CacheResponse {
                 mcCache.get(cacheKey)?.delete((hashKey));
                 return {
                     ok     : false,
-                    message: 'cache expired and deleted',
+                    message: "cache expired and deleted",
                 }
             }
         } else {
             return {
                 ok     : false,
-                message: 'cache info does not exist',
+                message: "cache info does not exist",
             }
         }
     } catch (e) {
         return {
             ok     : false,
-            message: e.message ? e.message : 'error fetching cache information',
+            message: e.message ? e.message : "error fetching cache information",
         }
     }
 }
 
-export function deleteHashCache(key: string, hash: string, by: string = "hash"): CacheResponse {
+export function deleteHashCache(key: string, hash: string, by: string = "hash"): CacheResponseType {
     try {
 
-        if ((!key || !hash) && by === 'hash') {
+        if ((!key || !hash) && by === "hash") {
             return {
                 ok     : false,
-                message: 'key and hash-key are required',
+                message: "key and hash-key are required",
             }
         }
         const cacheKey = key + keyCode;
         const hashKey = hash + keyCode;
-        if (key && by === 'key' && mcCache.has(cacheKey)) {
+        if (key && by === "key" && mcCache.has(cacheKey)) {
             mcCache.delete(cacheKey);
             return {
                 ok     : true,
-                message: 'task completed successfully',
+                message: "task completed successfully",
             }
             // key != "" and hash != "" and by == "hash" and mcCache.hasKey(cacheKey) and mcCache[cacheKey].hasKey(hashKey)
-        } else if (key && hash && by === 'hash' && mcCache.get(cacheKey)?.has(hashKey)) {
+        } else if (key && hash && by === "hash" && mcCache.get(cacheKey)?.has(hashKey)) {
             mcCache.get(cacheKey)?.delete(hashKey);
             return {
                 ok     : true,
-                message: 'task completed successfully',
+                message: "task completed successfully",
             }
         } else {
             return {
                 ok     : false,
-                message: 'task could not be completed due to incomplete inputs',
+                message: "task could not be completed due to incomplete inputs",
             }
         }
     } catch (e) {
         return {
             ok     : false,
-            message: e.message ? e.message : 'error deleting cache information',
+            message: e.message ? e.message : "error deleting cache information",
         }
     }
 }
 
-export function clearHashCache(): CacheResponse {
+export function clearHashCache(): CacheResponseType {
     try {
         // clear the cache object/dictionary (map)
         mcCache.clear();
         return {
             ok     : true,
-            message: 'task completed successfully',
+            message: "task completed successfully",
         }
     } catch (e) {
         return {
             ok     : false,
-            message: e.message ? e.message : 'error clearing the cache',
+            message: e.message ? e.message : "error clearing the cache",
         }
     }
 }

@@ -14,3 +14,8 @@
 
 - Hash Cache: key-hash-value storage for caching number, string and object values
 - It exposes the following functions: setHashCache(), getHashCache, deleteHashCache and clearHashCache
+
+## Installation
+```js
+npm i @mconnect/mccache
+```
