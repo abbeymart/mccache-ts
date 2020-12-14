@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.2.1
+
+- Release date: Dec 13, 2020
+- files housekeeping
+
 ## Version 0.2.0
 
 - Release date: Dec 13, 2020
