@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.2.2
+
+- Release date: Dec 13, 2020
+- applied @mconnect/test package
+
 ## Version 0.2.1
 
 - Release date: Dec 13, 2020

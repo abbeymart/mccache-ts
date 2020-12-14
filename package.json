@@ -1,6 +1,6 @@
 {
   "name": "@mconnect/mccache",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "mConnect In-Memory key and key-hash Caching Package",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
