@@ -2,7 +2,8 @@
 
 ## Version 0.2.0
 
-- Release date: Nov 30, 2020 | node-ts version
+- Release date: Dec 13, 2020
+- npm/github publication: refactor, test, build and release | node-ts version
 
 ## Version 0.1.0
 

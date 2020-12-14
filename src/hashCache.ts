@@ -6,7 +6,7 @@
  */
 
 // types
-import { ValueType, HashValueType, HashCacheValueType, CacheResponse } from "../config/cacheTypes";
+import { ValueType, HashValueType, HashCacheValueType, CacheResponse } from "./config/cacheTypes";
 
 // Initialise cache object/dictionary (map)
 let mcCache = new Map<string, HashCacheValueType>();

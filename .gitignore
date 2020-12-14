@@ -8,17 +8,20 @@ pids
 *.seed
 
 # Dependency directory
-# https://docs.npmjs.com/cli/shrinkwrap#caveats
 node_modules
+
+# Secured configuration directories
 src/config/secure
-# config/constants.json
+test/config/secure
 
 # test report
-mochawesome-report
+#mochawesome-report
 
 .idea
 .vscode
-/public/
-public
+
+# Build/compiled directories
+dist
+lib
 
 project.md
