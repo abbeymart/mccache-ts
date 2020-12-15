@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.3.0
+
+- Release date: Dec 15, 2020
+- exported and published types
+
 ## Version 0.2.2
 
 - Release date: Dec 13, 2020

@@ -5,5 +5,6 @@
  * @Description: mc: mc-cache
  */
 
-export * from './simpleCache';
-export * from './hashCache';
+export * from "./types"
+export * from "./simpleCache";
+export * from "./hashCache";
