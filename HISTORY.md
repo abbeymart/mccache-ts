@@ -1,5 +1,11 @@
 # Historical logs
 
+## Version 0.4.0
+
+- Release date: June 30, 2021
+- refactored cache hash and key 
+
+
 ## Version 0.3.0
 
 - Release date: Dec 15, 2020

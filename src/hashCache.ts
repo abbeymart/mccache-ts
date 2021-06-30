@@ -26,18 +26,18 @@ export function setHashCache(key: string, hash: string, value: ValueType, expire
         const cacheKey = key + keyCode;
         const hashKey = hash + keyCode;
 
-        if (!mcCache.has(cacheKey)) {
-            mcCache.set(cacheKey, new Map<string, CacheValueType>());
+        if (!mcCache.has(hashKey)) {
+            mcCache.set(hashKey, new Map<string, CacheValueType>());
         }
-        if (mcCache.has(cacheKey) && !mcCache.get(cacheKey)?.has(hashKey)) {
-            mcCache.get(cacheKey)?.set(hashKey, {});
+        if (mcCache.has(hashKey) && !mcCache.get(hashKey)?.has(cacheKey)) {
+            mcCache.get(hashKey)?.set(cacheKey, {});
         }
         let hashValue = {value: value, expire: Date.now() + expire * 1000};
-        mcCache.get(cacheKey)?.set(hashKey, hashValue);
+        mcCache.get(hashKey)?.set(cacheKey, hashValue);
         return {
             ok     : true,
             message: "task completed successfully",
-            value  : mcCache.get(cacheKey)?.get(hashKey)?.value,
+            value  : mcCache.get(hashKey)?.get(cacheKey)?.value,
         }
     } catch (e) {
         return {
@@ -58,17 +58,17 @@ export function getHashCache(key: string, hash: string): CacheResponseType {
         const cacheKey = key + keyCode;
         const hashKey = hash + keyCode;
         // get active (non-expired) cache content
-        if (mcCache.has(cacheKey) && mcCache.get(cacheKey)?.has(hashKey)) {
-            let cValue = mcCache.get(cacheKey)?.get(hashKey);
+        if (mcCache.has(hashKey) && mcCache.get(hashKey)?.has(cacheKey)) {
+            let cValue = mcCache.get(hashKey)?.get(cacheKey);
             if (cValue && cValue.expire && cValue.expire > Date.now()) {
                 return {
                     ok     : true,
                     message: "task completed successfully",
-                    value  : mcCache.get(cacheKey)?.get(hashKey)?.value,
+                    value  : mcCache.get(hashKey)?.get(cacheKey)?.value,
                 }
             } else {
                 // delete expired cache
-                mcCache.get(cacheKey)?.delete((hashKey));
+                mcCache.get(hashKey)?.delete((cacheKey));
                 return {
                     ok     : false,
                     message: "cache expired and deleted",
@@ -88,10 +88,10 @@ export function getHashCache(key: string, hash: string): CacheResponseType {
     }
 }
 
-export function deleteHashCache(key: string, hash: string, by: string = "hash"): CacheResponseType {
+export function deleteHashCache(key: string, hash: string, by: string = "key"): CacheResponseType {
     try {
 
-        if ((!key || !hash) && by === "hash") {
+        if ((!key || !hash) && by === "key") {
             return {
                 ok     : false,
                 message: "key and hash-key are required",
@@ -99,15 +99,15 @@ export function deleteHashCache(key: string, hash: string, by: string = "hash"):
         }
         const cacheKey = key + keyCode;
         const hashKey = hash + keyCode;
-        if (key && by === "key" && mcCache.has(cacheKey)) {
-            mcCache.delete(cacheKey);
+        if (key && by === "hash" && mcCache.has(hashKey)) {
+            mcCache.delete(hashKey);
             return {
                 ok     : true,
                 message: "task completed successfully",
             }
             // key != "" and hash != "" and by == "hash" and mcCache.hasKey(cacheKey) and mcCache[cacheKey].hasKey(hashKey)
-        } else if (key && hash && by === "hash" && mcCache.get(cacheKey)?.has(hashKey)) {
-            mcCache.get(cacheKey)?.delete(hashKey);
+        } else if (key && hash && by === "key" && mcCache.get(hashKey)?.has(cacheKey)) {
+            mcCache.get(hashKey)?.delete(cacheKey);
             return {
                 ok     : true,
                 message: "task completed successfully",
