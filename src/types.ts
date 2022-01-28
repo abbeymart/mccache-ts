@@ -5,8 +5,6 @@
  * @Description: mccache types
  */
 
-// types
-// export type ValueType = string | number | object | Array<number> | Array<string> | Array<object>;
 export type ValueType = any
 
 export interface CacheValueType {

@@ -1,6 +1,6 @@
 {
   "name": "@mconnect/mccache",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "mConnect In-Memory key and key-hash Caching Package",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
@@ -11,6 +11,8 @@
     "clean": "rm -rf lib",
     "build-watch": "tsc -w",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "build-test": "tsc -p tsconfig-test.json",
+    "test": "node lib/tests/test/simpleCache.test.js && node lib/tests/test/hashCache.test.js",
     "prepublishOnly": "npm run build"
   },
   "repository": {

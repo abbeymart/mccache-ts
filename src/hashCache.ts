@@ -14,7 +14,7 @@ let mcCache = new Map<string, HashCacheValueType>();
 // secret keyCode for added security
 const keyCode = "mcconnect_20200320";
 
-export function setHashCache(key: string, hash: string, value: ValueType, expire: number = 300): CacheResponseType {
+export function setHashCache(key: any, hash: any, value: ValueType, expire: number = 300): CacheResponseType {
     // key and value: key:string, hash: string, value:Value, expire:time(seconds)
     try {
         if (!key || !hash || !value) {
@@ -23,8 +23,8 @@ export function setHashCache(key: string, hash: string, value: ValueType, expire
                 message: "cache key, hash and value are required",
             }
         }
-        const cacheKey = key + keyCode;
-        const hashKey = hash + keyCode;
+        const cacheKey = JSON.stringify(key) + keyCode;
+        const hashKey = JSON.stringify(hash) + keyCode;
 
         if (!mcCache.has(hashKey)) {
             mcCache.set(hashKey, new Map<string, CacheValueType>());
@@ -47,7 +47,7 @@ export function setHashCache(key: string, hash: string, value: ValueType, expire
     }
 }
 
-export function getHashCache(key: string, hash: string): CacheResponseType {
+export function getHashCache(key: any, hash: any): CacheResponseType {
     try {
         if (!key || !hash) {
             return {
@@ -55,8 +55,8 @@ export function getHashCache(key: string, hash: string): CacheResponseType {
                 message: "key and hash-key are required",
             }
         }
-        const cacheKey = key + keyCode;
-        const hashKey = hash + keyCode;
+        const cacheKey = JSON.stringify(key) + keyCode;
+        const hashKey = JSON.stringify(hash) + keyCode;
         // get active (non-expired) cache content
         if (mcCache.has(hashKey) && mcCache.get(hashKey)?.has(cacheKey)) {
             let cValue = mcCache.get(hashKey)?.get(cacheKey);
@@ -88,7 +88,7 @@ export function getHashCache(key: string, hash: string): CacheResponseType {
     }
 }
 
-export function deleteHashCache(key: string, hash: string, by: string = "key"): CacheResponseType {
+export function deleteHashCache(key: any, hash: any, by: string = "key"): CacheResponseType {
     try {
 
         if ((!key || !hash) && by === "key") {
@@ -97,8 +97,8 @@ export function deleteHashCache(key: string, hash: string, by: string = "key"): 
                 message: "key and hash-key are required",
             }
         }
-        const cacheKey = key + keyCode;
-        const hashKey = hash + keyCode;
+        const cacheKey = JSON.stringify(key) + keyCode;
+        const hashKey = JSON.stringify(hash) + keyCode;
         if (key && by === "hash" && mcCache.has(hashKey)) {
             mcCache.delete(hashKey);
             return {

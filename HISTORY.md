@@ -1,10 +1,15 @@
 # Historical logs
 
+## Version 0.5.0
+
+- Release date: January 28, 2022
+- refactored cache hash and key
+- test using GitAction workflow
+
 ## Version 0.4.0
 
 - Release date: June 30, 2021
 - refactored cache hash and key 
-
 
 ## Version 0.3.0
 
