@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.5.1
+
+- Release date: January 28, 2022
+- refactored GitAction task name
+
 ## Version 0.5.0
 
 - Release date: January 28, 2022

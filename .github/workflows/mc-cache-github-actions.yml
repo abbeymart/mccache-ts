@@ -1,7 +1,7 @@
 name: mc-cache-github-actions
 on: [push]
 jobs:
-  check-bats-version:
+  run-mc-cache-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
