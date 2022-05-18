@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.5.2
+
+- Release date: May 18, 2022
+- updated dep-packages
+
 ## Version 0.5.1
 
 - Release date: January 28, 2022
