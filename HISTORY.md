@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.6.0
+
+- Release date: Nov 16
+- refactored-types-methods-v0.6.0
+
 ## Version 0.5.3
 
 - Release date: May 18, 2022
@@ -24,7 +29,7 @@
 ## Version 0.4.0
 
 - Release date: June 30, 2021
-- refactored cache hash and key 
+- refactored cache hash and key
 
 ## Version 0.3.0
 

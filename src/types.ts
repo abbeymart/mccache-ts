@@ -7,6 +7,27 @@
 
 export type ValueType = any
 
+export interface CacheParamsType {
+    key: any;
+    value: ValueType;
+    expire?: number;
+}
+
+export interface HashCacheParamsType {
+    key: any;
+    hash: any;
+    value: ValueType;
+    expire?: number;
+}
+
+export type ByType = "hash" | "key"
+
+export interface QueryHashCacheParamsType {
+    key: any;
+    hash: any;
+    by?: ByType;
+}
+
 export interface CacheValueType {
     value?: ValueType;
     expire?: number;

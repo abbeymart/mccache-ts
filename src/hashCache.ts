@@ -6,7 +6,9 @@
  */
 
 // types
-import { ValueType, CacheValueType, HashCacheValueType, CacheResponseType } from "./types";
+import {
+    CacheValueType, HashCacheValueType, CacheResponseType, HashCacheParamsType, QueryHashCacheParamsType
+} from "./types";
 
 // Initialise cache object/dictionary (map)
 let mcCache = new Map<string, HashCacheValueType>();
@@ -14,8 +16,12 @@ let mcCache = new Map<string, HashCacheValueType>();
 // secret keyCode for added security
 const keyCode = "mcconnect_20200320";
 
-export function setHashCache(key: any, hash: any, value: ValueType, expire: number = 300): CacheResponseType {
+export function setHashCache(cacheParams: HashCacheParamsType): CacheResponseType {
     // key and value: key:string, hash: string, value:Value, expire:time(seconds)
+    const key = cacheParams.key || null;
+    const hash = cacheParams.hash || null;
+    const value = cacheParams.value;
+    const expire = cacheParams.expire || 300;
     try {
         if (!key || !hash || !value) {
             return {
@@ -47,7 +53,9 @@ export function setHashCache(key: any, hash: any, value: ValueType, expire: numb
     }
 }
 
-export function getHashCache(key: any, hash: any): CacheResponseType {
+export function getHashCache(cacheParams: QueryHashCacheParamsType): CacheResponseType {
+    const key = cacheParams.key;
+    const hash = cacheParams.hash;
     try {
         if (!key || !hash) {
             return {
@@ -88,9 +96,11 @@ export function getHashCache(key: any, hash: any): CacheResponseType {
     }
 }
 
-export function deleteHashCache(key: any, hash: any, by: string = "key"): CacheResponseType {
+export function deleteHashCache(cacheParams: QueryHashCacheParamsType): CacheResponseType {
+    const key = cacheParams.key;
+    const hash = cacheParams.hash;
+    const by = cacheParams.by || "key"
     try {
-
         if ((!key || !hash) && by === "key") {
             return {
                 ok     : false,

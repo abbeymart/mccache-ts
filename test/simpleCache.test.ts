@@ -7,7 +7,7 @@
 
 import { delay, assertEquals, mcTest, postTestResult } from "@mconnect/mctest";
 
-import { setCache, getCache, deleteCache, clearCache } from "../src";
+import { setCache, getCache, deleteCache, clearCache, CacheParamsType } from "../src";
 
 // test data
 let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Canada"},
@@ -21,7 +21,12 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
     await mcTest({
         name    : "should set and return valid cacheValue",
         testFunc: () => {
-            const cacheRes = setCache(cacheKey, cacheValue, expiryTime);
+            const cacheParams: CacheParamsType = {
+                key   : cacheKey,
+                value : cacheValue,
+                expire: expiryTime,
+            }
+            const cacheRes = setCache(cacheParams);
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
                 assertEquals(cacheRes.value, cacheValue);
@@ -58,7 +63,12 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
         name    : "should set and return valid cacheValue -> before timeout/expiration)",
         testFunc: () => {
             // change the expiry time to 2 seconds
-            const cacheRes = setCache(cacheKey, cacheValue, 2);
+            const cacheParams: CacheParamsType = {
+                key   : cacheKey,
+                value : cacheValue,
+                expire: 2,
+            }
+            const cacheRes = setCache(cacheParams);
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
                 assertEquals(cacheRes.value, cacheValue);
@@ -88,7 +98,12 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
         name    : "should set and return valid cacheValue (repeat prior to deleteCache testing",
         testFunc: () => {
             // change the expiry time to 10 seconds
-            let cacheRes = setCache(cacheKey, cacheValue, 10);
+            const cacheParams: CacheParamsType = {
+                key   : cacheKey,
+                value : cacheValue,
+                expire: 10,
+            }
+            let cacheRes = setCache(cacheParams);
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
                 assertEquals(cacheRes.value, cacheValue);

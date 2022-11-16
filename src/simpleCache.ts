@@ -5,7 +5,7 @@
  * @Description: mc: simple cache (key-value)
  */
 
-import { ValueType, CacheValueType, CacheResponseType } from "./types";
+import { CacheValueType, CacheResponseType, CacheParamsType } from "./types";
 
 // Initialise cache object/dictionary (map)
 let mcCache = new Map<string, CacheValueType>();
@@ -13,8 +13,11 @@ let mcCache = new Map<string, CacheValueType>();
 // secret keyCode for added security
 const keyCode = "mcconnect_20200320";
 
-export function setCache(key: any, value: ValueType, expire: number = 300): CacheResponseType {
+export function setCache(cacheParams: CacheParamsType): CacheResponseType {
     // key and value: key:string, value:ValueType, expire:time(seconds)
+    const key = cacheParams.key || null;
+    const value = cacheParams.value;
+    const expire = cacheParams.expire || 300;
     try {
         if (!key || !value) {
             return {
