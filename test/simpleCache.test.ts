@@ -60,7 +60,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
     });
 
     await mcTest({
-        name    : "should set and return valid cacheValue -> before timeout/expiration)",
+        name    : "should set and return valid cacheValue -> before timeout/expiration",
         testFunc: () => {
             // change the expiry time to 2 seconds
             const cacheParams: CacheParamsType = {
@@ -95,7 +95,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
     });
 
     await mcTest({
-        name    : "should set and return valid cacheValue (repeat prior to deleteCache testing",
+        name    : "should set and return valid cacheValue (repeat prior to deleteCache testing)",
         testFunc: () => {
             // change the expiry time to 10 seconds
             const cacheParams: CacheParamsType = {

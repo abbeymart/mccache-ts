@@ -5,17 +5,27 @@
  * @Description: mccache types
  */
 
-export type ValueType = any
+type ValueType =
+    Record<string, unknown>
+    | Array<Record<string, unknown>>
+    | string
+    | number
+    | Array<string>
+    | Array<number>
+    | boolean
+    | Array<boolean>;
+
+type KeyType = string | Record<string, unknown> | number
 
 export interface CacheParamsType {
-    key: any;
+    key: KeyType;
     value: ValueType;
     expire?: number;
 }
 
 export interface HashCacheParamsType {
-    key: any;
-    hash: any;
+    key: KeyType;
+    hash: KeyType;
     value: ValueType;
     expire?: number;
 }
@@ -23,8 +33,8 @@ export interface HashCacheParamsType {
 export type ByType = "hash" | "key"
 
 export interface QueryHashCacheParamsType {
-    key: any;
-    hash: any;
+    key: KeyType;
+    hash: KeyType;
     by?: ByType;
 }
 

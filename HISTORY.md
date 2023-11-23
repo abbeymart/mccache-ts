@@ -1,8 +1,13 @@
 # Historical logs
 
+## Version 0.7.0
+
+- Release date: Nov 23, 2023
+- refactored-types-methods-v0.7.0
+
 ## Version 0.6.0
 
-- Release date: Nov 16
+- Release date: Nov 18, 2022
 - refactored-types-methods-v0.6.0
 
 ## Version 0.5.3

@@ -72,7 +72,7 @@ export function getHashCache(cacheParams: QueryHashCacheParamsType): CacheRespon
                 return {
                     ok     : true,
                     message: "task completed successfully",
-                    value  : mcCache.get(hashKey)?.get(cacheKey)?.value,
+                    value  : cValue.value,
                 }
             } else {
                 // delete expired cache
@@ -109,14 +109,14 @@ export function deleteHashCache(cacheParams: QueryHashCacheParamsType): CacheRes
         }
         const cacheKey = JSON.stringify(key) + keyCode;
         const hashKey = JSON.stringify(hash) + keyCode;
-        if (key && by === "hash" && mcCache.has(hashKey)) {
+        if (hash && by === "hash" && mcCache.has(hashKey)) {
             mcCache.delete(hashKey);
             return {
                 ok     : true,
                 message: "task completed successfully",
             }
             // key != "" and hash != "" and by == "hash" and mcCache.hasKey(cacheKey) and mcCache[cacheKey].hasKey(hashKey)
-        } else if (key && hash && by === "key" && mcCache.get(hashKey)?.has(cacheKey)) {
+        } else if (by === "key" && mcCache.get(hashKey)?.has(cacheKey)) {
             mcCache.get(hashKey)?.delete(cacheKey);
             return {
                 ok     : true,
