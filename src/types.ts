@@ -1,32 +1,26 @@
 /**
- * @Author: abbeymart | Abi Akindele | @Created: 2020-07-16
+ * @Author: abbeymart | Abi Akindele | @Created: 2020-07-16, 2023-11-23
  * @Company: Copyright 2020 Abi Akindele  | mConnect.biz
  * @License: All Rights Reserved | LICENSE.md
  * @Description: mccache types
  */
 
-type ValueType =
-    Record<string, unknown>
-    | Array<Record<string, unknown>>
-    | string
-    | number
-    | Array<string>
-    | Array<number>
-    | boolean
-    | Array<boolean>;
+export interface ObjectType {
+    [key: string]: any;
+}
 
-type KeyType = string | Record<string, unknown> | number
+export type KeyType = string | Record<string, unknown> | number | ObjectType
 
-export interface CacheParamsType {
+export interface CacheParamsType<T> {
     key: KeyType;
-    value: ValueType;
+    value: T;
     expire?: number;
 }
 
-export interface HashCacheParamsType {
+export interface HashCacheParamsType<T> {
     key: KeyType;
     hash: KeyType;
-    value: ValueType;
+    value: T;
     expire?: number;
 }
 
@@ -38,15 +32,15 @@ export interface QueryHashCacheParamsType {
     by?: ByType;
 }
 
-export interface CacheValueType {
-    value?: ValueType;
+export interface CacheValueType<T> {
+    value?: T;
     expire?: number;
 }
 
-export interface CacheResponseType {
+export interface CacheResponseType<T> {
     ok: boolean;
     message?: string;
-    value?: ValueType;
+    value?: T;
 }
 
-export type HashCacheValueType = Map<string, CacheValueType>;
+export type HashCacheValueType<T> = Map<string, CacheValueType<T>>;

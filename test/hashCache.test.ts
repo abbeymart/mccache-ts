@@ -8,12 +8,13 @@
 import { delay, assertEquals, mcTest, postTestResult } from "@mconnect/mctest";
 
 import {
-    setHashCache, getHashCache, deleteHashCache, clearHashCache, HashCacheParamsType, QueryHashCacheParamsType
+    setHashCache, getHashCache, deleteHashCache, clearHashCache, HashCacheParamsType, QueryHashCacheParamsType,
+    ObjectType
 } from "../src";
 
 // test data
-let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Canada"},
-    cacheKey = JSON.stringify({name: "Tab1", location: "Toronto"}),
+let cacheValue: ObjectType = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Canada"},
+    cacheKey: string = JSON.stringify({name: "Tab1", location: "Toronto"}),
     expiryTime = 5, // in seconds
     hashKey = JSON.stringify({hash1: "Hash1", hash2: "Hash2"});
 
@@ -22,7 +23,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
     await mcTest({
         name    : "should set and return valid cacheValue",
         testFunc: () => {
-            const cacheParams: HashCacheParamsType = {
+            const cacheParams: HashCacheParamsType<ObjectType> = {
                 key: cacheKey,
                 hash: hashKey,
                 value: cacheValue,
@@ -38,7 +39,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
                     key: cacheKey,
                     hash: hashKey,
                 }
-                const res = getHashCache(getCacheParams);
+                const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, true);
                 assertEquals(res.value, cacheValue);
                 assertEquals(res.message, "task completed successfully");
@@ -51,7 +52,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
     await mcTest({
         name    : "should clear the cache and return nil/empty value",
         testFunc: () => {
-            let cacheRes = clearHashCache();
+            let cacheRes = clearHashCache<ObjectType>();
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
                 assertEquals(cacheRes.message, "task completed successfully");
@@ -60,7 +61,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
                     key: cacheKey,
                     hash: hashKey,
                 }
-                const res = getHashCache(getCacheParams);
+                const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, false);
                 assertEquals(res.message, "cache info does not exist");
             } else {
@@ -73,7 +74,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
         name    : "should set and return valid cacheValue -> before timeout/expiration",
         testFunc: () => {
             // change the expiry time to 2 seconds
-            const cacheParams: HashCacheParamsType = {
+            const cacheParams: HashCacheParamsType<ObjectType> = {
                 key: cacheKey,
                 hash: hashKey,
                 value: cacheValue,
@@ -88,7 +89,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
                     key: cacheKey,
                     hash: hashKey,
                 }
-                const res = getHashCache(getCacheParams);
+                const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, true);
                 assertEquals(res.value, cacheValue);
                 assertEquals(res.message, "task completed successfully");
@@ -117,7 +118,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
         name    : "should set and return valid cacheValue (repeat prior to deleteCache testing)",
         testFunc: () => {
             // change the expiry time to 10 seconds
-            const cacheParams: HashCacheParamsType = {
+            const cacheParams: HashCacheParamsType<ObjectType> = {
                 key: cacheKey,
                 hash: hashKey,
                 value: cacheValue,
@@ -132,7 +133,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
                     key: cacheKey,
                     hash: hashKey,
                 }
-                const res = getHashCache(getCacheParams);
+                const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, true);
                 assertEquals(res.value, cacheValue);
                 assertEquals(res.message, "task completed successfully");
@@ -149,7 +150,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
                 key: cacheKey,
                 hash: hashKey,
             }
-            let cacheRes = deleteHashCache(delCacheParams);
+            let cacheRes = deleteHashCache<ObjectType>(delCacheParams);
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
                 assertEquals(cacheRes.message, "task completed successfully");
@@ -157,7 +158,7 @@ let cacheValue = {firstName: "Abi", lastName: "Akindele", location: "Toronto-Can
                     key: cacheKey,
                     hash: hashKey,
                 }
-                const res = getHashCache(getCacheParams);
+                const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, false);
                 assertEquals(res.value, undefined);
                 assertEquals(res.message, "cache info does not exist");

@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.8.0
+
+- Release date: Nov 23, 2023
+- refactored-value-type-to-generic-v0.8.0
+
 ## Version 0.7.0
 
 - Release date: Nov 23, 2023

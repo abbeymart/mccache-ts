@@ -5,15 +5,15 @@
  * @Description: mc: simple cache (key-value)
  */
 
-import { CacheValueType, CacheResponseType, CacheParamsType } from "./types";
+import { CacheValueType, CacheResponseType, CacheParamsType, KeyType } from "./types";
 
 // Initialise cache object/dictionary (map)
-let mcCache = new Map<string, CacheValueType>();
+let mcCache = new Map<string, CacheValueType<any>>();
 
 // secret keyCode for added security
 const keyCode = "mcconnect_20200320";
 
-export function setCache(cacheParams: CacheParamsType): CacheResponseType {
+export function setCache<T>(cacheParams: CacheParamsType<T>): CacheResponseType<T> {
     // key and value: key:string, value:ValueType, expire:time(seconds)
     const key = cacheParams.key || null;
     const value = cacheParams.value;
@@ -40,7 +40,7 @@ export function setCache(cacheParams: CacheParamsType): CacheResponseType {
     }
 }
 
-export function getCache(key: any): CacheResponseType {
+export function getCache<T>(key: KeyType): CacheResponseType<T> {
     try {
         if (!key) {
             return {
@@ -79,7 +79,7 @@ export function getCache(key: any): CacheResponseType {
     }
 }
 
-export function deleteCache(key: any): CacheResponseType {
+export function deleteCache<T>(key: KeyType): CacheResponseType<T> {
     try {
         if (!key) {
             return {
@@ -108,7 +108,7 @@ export function deleteCache(key: any): CacheResponseType {
     }
 }
 
-export function clearCache(): CacheResponseType {
+export function clearCache<T>(): CacheResponseType<T> {
     try {
         // clear the cache object/dictionary (map)
         mcCache.clear();

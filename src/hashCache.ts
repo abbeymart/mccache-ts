@@ -11,12 +11,12 @@ import {
 } from "./types";
 
 // Initialise cache object/dictionary (map)
-let mcCache = new Map<string, HashCacheValueType>();
+let mcCache = new Map<string, HashCacheValueType<any>>();
 
 // secret keyCode for added security
 const keyCode = "mcconnect_20200320";
 
-export function setHashCache(cacheParams: HashCacheParamsType): CacheResponseType {
+export function setHashCache<T>(cacheParams: HashCacheParamsType<T>): CacheResponseType<T> {
     // key and value: key:string, hash: string, value:Value, expire:time(seconds)
     const key = cacheParams.key || null;
     const hash = cacheParams.hash || null;
@@ -33,7 +33,7 @@ export function setHashCache(cacheParams: HashCacheParamsType): CacheResponseTyp
         const hashKey = JSON.stringify(hash) + keyCode;
 
         if (!mcCache.has(hashKey)) {
-            mcCache.set(hashKey, new Map<string, CacheValueType>());
+            mcCache.set(hashKey, new Map<string, CacheValueType<T>>());
         }
         if (mcCache.has(hashKey) && !mcCache.get(hashKey)?.has(cacheKey)) {
             mcCache.get(hashKey)?.set(cacheKey, {});
@@ -53,7 +53,7 @@ export function setHashCache(cacheParams: HashCacheParamsType): CacheResponseTyp
     }
 }
 
-export function getHashCache(cacheParams: QueryHashCacheParamsType): CacheResponseType {
+export function getHashCache<T>(cacheParams: QueryHashCacheParamsType): CacheResponseType<T> {
     const key = cacheParams.key;
     const hash = cacheParams.hash;
     try {
@@ -96,7 +96,7 @@ export function getHashCache(cacheParams: QueryHashCacheParamsType): CacheRespon
     }
 }
 
-export function deleteHashCache(cacheParams: QueryHashCacheParamsType): CacheResponseType {
+export function deleteHashCache<T>(cacheParams: QueryHashCacheParamsType): CacheResponseType<T> {
     const key = cacheParams.key;
     const hash = cacheParams.hash;
     const by = cacheParams.by || "key"
@@ -136,7 +136,7 @@ export function deleteHashCache(cacheParams: QueryHashCacheParamsType): CacheRes
     }
 }
 
-export function clearHashCache(): CacheResponseType {
+export function clearHashCache<T>(): CacheResponseType<T> {
     try {
         // clear the cache object/dictionary (map)
         mcCache.clear();
