@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.8.2
+
+- Release date: May-31-2026
+- updated-package-deps-v0.8.2
+
 ## Version 0.8.1
 
 - Release date: May-31-2026
