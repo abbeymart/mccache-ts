@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.8.1
+
+- Release date: May-31-2026
+- updated-deps-tsconfig-and-comments-test-cases-v0.8.1
+
 ## Version 0.8.0
 
 - Release date: Nov 23, 2023

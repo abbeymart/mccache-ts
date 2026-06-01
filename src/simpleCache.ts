@@ -1,13 +1,13 @@
 /**
  * @Author: abbeymart | Abi Akindele | @Created: 2020-07-09
- * @Company: Copyright 2020 Abi Akindele  | mConnect.biz
+ * @Company: Copyright 2020 Abi Akindele | mConnect.biz
  * @License: All Rights Reserved | LICENSE.md
  * @Description: mc: simple cache (key-value)
  */
 
-import { CacheValueType, CacheResponseType, CacheParamsType, KeyType } from "./types";
+import { CacheParamsType, CacheResponseType, CacheValueType, KeyType } from "./types";
 
-// Initialise cache object/dictionary (map)
+// Initialize cache object/dictionary (map)
 let mcCache = new Map<string, CacheValueType<any>>();
 
 // secret keyCode for added security
@@ -23,6 +23,7 @@ export function setCache<T>(cacheParams: CacheParamsType<T>): CacheResponseType<
             return {
                 ok     : false,
                 message: "cache key and value are required",
+
             }
         }
         const cacheKey = JSON.stringify(key) + keyCode;
@@ -36,6 +37,7 @@ export function setCache<T>(cacheParams: CacheParamsType<T>): CacheResponseType<
         return {
             ok     : false,
             message: e.message ? e.message : "error creating/setting cache information",
+
         }
     }
 }
@@ -63,6 +65,7 @@ export function getCache<T>(key: KeyType): CacheResponseType<T> {
                 return {
                     ok     : false,
                     message: "cache expired and deleted",
+
                 }
             }
         } else {

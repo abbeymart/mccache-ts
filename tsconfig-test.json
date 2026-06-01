@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "CommonJS",
-    "outDir": "./lib/tests"
+    "outDir": "lib/tests"
   },
   "include": [
     "./test"

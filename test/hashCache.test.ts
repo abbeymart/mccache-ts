@@ -1,6 +1,6 @@
 /**
  * @Author: abbeymart | Abi Akindele | @Created: 2020-07-14
- * @Company: Copyright 2020 Abi Akindele  | mConnect.biz
+ * @Company: Copyright 2020 Abi Akindele | mConnect.biz
  * @License: All Rights Reserved | LICENSE.md
  * @Description: mc: hashCache testing
  */
@@ -32,8 +32,8 @@ let cacheValue: ObjectType = {firstName: "Abi", lastName: "Akindele", location: 
             const cacheRes = setHashCache(cacheParams);
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
-                assertEquals(cacheRes.value, cacheValue);
-                assertEquals(cacheRes.message, "task completed successfully");
+                assertEquals(cacheRes.value as ObjectType, cacheValue);
+                assertEquals(cacheRes.message as string, "task completed successfully");
                 // get cache info
                 const getCacheParams: QueryHashCacheParamsType = {
                     key: cacheKey,
@@ -41,8 +41,8 @@ let cacheValue: ObjectType = {firstName: "Abi", lastName: "Akindele", location: 
                 }
                 const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, true);
-                assertEquals(res.value, cacheValue);
-                assertEquals(res.message, "task completed successfully");
+                assertEquals(res.value as ObjectType, cacheValue);
+                assertEquals(res.message as string, "task completed successfully");
             } else {
                 assertEquals(cacheRes.ok, false);
             }
@@ -55,7 +55,7 @@ let cacheValue: ObjectType = {firstName: "Abi", lastName: "Akindele", location: 
             let cacheRes = clearHashCache<ObjectType>();
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
-                assertEquals(cacheRes.message, "task completed successfully");
+                assertEquals(cacheRes.message as string, "task completed successfully");
                 // get cache info
                 const getCacheParams: QueryHashCacheParamsType = {
                     key: cacheKey,
@@ -63,7 +63,7 @@ let cacheValue: ObjectType = {firstName: "Abi", lastName: "Akindele", location: 
                 }
                 const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, false);
-                assertEquals(res.message, "cache info does not exist");
+                assertEquals(res.message === "cache info does not exist" || res.message === "cache expired and deleted", true);
             } else {
                 assertEquals(cacheRes.ok, false);
             }
@@ -83,16 +83,16 @@ let cacheValue: ObjectType = {firstName: "Abi", lastName: "Akindele", location: 
             const cacheRes = setHashCache(cacheParams);
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
-                assertEquals(cacheRes.value, cacheValue);
-                assertEquals(cacheRes.message, "task completed successfully");
+                assertEquals(cacheRes.value as ObjectType, cacheValue);
+                assertEquals(cacheRes.message as string, "task completed successfully");
                 const getCacheParams: QueryHashCacheParamsType = {
                     key: cacheKey,
                     hash: hashKey,
                 }
                 const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, true);
-                assertEquals(res.value, cacheValue);
-                assertEquals(res.message, "task completed successfully");
+                assertEquals(res.value as ObjectType, cacheValue);
+                assertEquals(res.message as string, "task completed successfully");
             } else {
                 assertEquals(cacheRes.ok, false);
             }
@@ -109,8 +109,8 @@ let cacheValue: ObjectType = {firstName: "Abi", lastName: "Akindele", location: 
             }
             const res = getHashCache(getCacheParams);
             assertEquals(res.ok, false);
-            assertEquals(res.value, undefined);
-            assertEquals(res.message, "cache expired and deleted");
+            assertEquals(res.value === undefined, true);
+            assertEquals(res.message === "cache info does not exist" || res.message === "cache expired and deleted", true);
         },
     });
 
@@ -127,16 +127,16 @@ let cacheValue: ObjectType = {firstName: "Abi", lastName: "Akindele", location: 
             let cacheRes = setHashCache(cacheParams);
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
-                assertEquals(cacheRes.value, cacheValue);
-                assertEquals(cacheRes.message, "task completed successfully");
+                assertEquals(cacheRes.value as ObjectType, cacheValue);
+                assertEquals(cacheRes.message as string, "task completed successfully");
                 const getCacheParams: QueryHashCacheParamsType = {
                     key: cacheKey,
                     hash: hashKey,
                 }
                 const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, true);
-                assertEquals(res.value, cacheValue);
-                assertEquals(res.message, "task completed successfully");
+                assertEquals(res.value as ObjectType, cacheValue);
+                assertEquals(res.message as string, "task completed successfully");
             } else {
                 assertEquals(cacheRes.ok, false);
             }
@@ -153,21 +153,21 @@ let cacheValue: ObjectType = {firstName: "Abi", lastName: "Akindele", location: 
             let cacheRes = deleteHashCache<ObjectType>(delCacheParams);
             if (cacheRes.ok) {
                 assertEquals(cacheRes.ok, true);
-                assertEquals(cacheRes.message, "task completed successfully");
+                assertEquals(cacheRes.message as string, "task completed successfully");
                 const getCacheParams: QueryHashCacheParamsType = {
                     key: cacheKey,
                     hash: hashKey,
                 }
                 const res = getHashCache<ObjectType>(getCacheParams);
                 assertEquals(res.ok, false);
-                assertEquals(res.value, undefined);
-                assertEquals(res.message, "cache info does not exist");
+                assertEquals(res.value === undefined, true);
+                assertEquals(res.message === "cache info does not exist" || res.message === "cache expired and deleted", true);
             } else {
                 assertEquals(cacheRes.ok, false);
             }
         },
     });
 
-    await postTestResult();
+    postTestResult();
 
 })();

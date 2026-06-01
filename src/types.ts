@@ -1,9 +1,10 @@
 /**
  * @Author: abbeymart | Abi Akindele | @Created: 2020-07-16, 2023-11-23
- * @Company: Copyright 2020 Abi Akindele  | mConnect.biz
+ * @Company: Copyright 2020 Abi Akindele | mConnect.biz
  * @License: All Rights Reserved | LICENSE.md
  * @Description: mccache types
  */
+import { ValueType } from "@mconnect/mctest";
 
 export interface ObjectType {
     [key: string]: any;

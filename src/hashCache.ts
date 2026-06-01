@@ -1,16 +1,16 @@
 /**
  * @Author: abbeymart | Abi Akindele | @Created: 2020-07-09
- * @Company: Copyright 2020 Abi Akindele  | mConnect.biz
+ * @Company: Copyright 2020 Abi Akindele | mConnect.biz
  * @License: All Rights Reserved | LICENSE.md
  * @Description: mc: hash cache (key-hash-value)
  */
 
 // types
 import {
-    CacheValueType, HashCacheValueType, CacheResponseType, HashCacheParamsType, QueryHashCacheParamsType
+    CacheResponseType, CacheValueType, HashCacheParamsType, HashCacheValueType, QueryHashCacheParamsType
 } from "./types";
 
-// Initialise cache object/dictionary (map)
+// Initialize cache object/dictionary (map)
 let mcCache = new Map<string, HashCacheValueType<any>>();
 
 // secret keyCode for added security
@@ -27,6 +27,7 @@ export function setHashCache<T>(cacheParams: HashCacheParamsType<T>): CacheRespo
             return {
                 ok     : false,
                 message: "cache key, hash and value are required",
+                
             }
         }
         const cacheKey = JSON.stringify(key) + keyCode;
@@ -49,6 +50,7 @@ export function setHashCache<T>(cacheParams: HashCacheParamsType<T>): CacheRespo
         return {
             ok     : false,
             message: e.message ? e.message : "error creating/setting cache information",
+            
         }
     }
 }
@@ -61,6 +63,7 @@ export function getHashCache<T>(cacheParams: QueryHashCacheParamsType): CacheRes
             return {
                 ok     : false,
                 message: "key and hash-key are required",
+                
             }
         }
         const cacheKey = JSON.stringify(key) + keyCode;
@@ -80,18 +83,21 @@ export function getHashCache<T>(cacheParams: QueryHashCacheParamsType): CacheRes
                 return {
                     ok     : false,
                     message: "cache expired and deleted",
+                    
                 }
             }
         } else {
             return {
                 ok     : false,
                 message: "cache info does not exist",
+                
             }
         }
     } catch (e) {
         return {
             ok     : false,
             message: e.message ? e.message : "error fetching cache information",
+            
         }
     }
 }
