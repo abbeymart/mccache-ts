@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.9.0
+
+- Release date: June-05-2026
+- updated-mctest_v0.6.2-added-singleton-cache-store-rewrite-testcases-v0.9.0
+
 ## Version 0.8.2
 
 - Release date: May-31-2026
@@ -44,7 +49,7 @@
 
 - Release date: January 28, 2022
 - refactored cache hash and key
-- test using GitAction workflow
+- test using the GitAction workflow
 
 ## Version 0.4.0
 

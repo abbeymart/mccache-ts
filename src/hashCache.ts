@@ -11,7 +11,7 @@ import {
 } from "./types";
 
 // Initialize cache object/dictionary (map)
-let mcCache = new Map<string, HashCacheValueType<any>>();
+const mcCache = new Map<string, HashCacheValueType<any>>();
 
 // secret keyCode for added security
 const keyCode = "mcconnect_20200320";
@@ -27,7 +27,7 @@ export function setHashCache<T>(cacheParams: HashCacheParamsType<T>): CacheRespo
             return {
                 ok     : false,
                 message: "cache key, hash and value are required",
-                
+
             }
         }
         const cacheKey = JSON.stringify(key) + keyCode;
@@ -50,7 +50,7 @@ export function setHashCache<T>(cacheParams: HashCacheParamsType<T>): CacheRespo
         return {
             ok     : false,
             message: e.message ? e.message : "error creating/setting cache information",
-            
+
         }
     }
 }
@@ -63,7 +63,7 @@ export function getHashCache<T>(cacheParams: QueryHashCacheParamsType): CacheRes
             return {
                 ok     : false,
                 message: "key and hash-key are required",
-                
+
             }
         }
         const cacheKey = JSON.stringify(key) + keyCode;
@@ -83,21 +83,21 @@ export function getHashCache<T>(cacheParams: QueryHashCacheParamsType): CacheRes
                 return {
                     ok     : false,
                     message: "cache expired and deleted",
-                    
+
                 }
             }
         } else {
             return {
                 ok     : false,
                 message: "cache info does not exist",
-                
+
             }
         }
     } catch (e) {
         return {
             ok     : false,
             message: e.message ? e.message : "error fetching cache information",
-            
+
         }
     }
 }

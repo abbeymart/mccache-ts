@@ -8,7 +8,7 @@
 import { CacheParamsType, CacheResponseType, CacheValueType, KeyType } from "./types";
 
 // Initialize cache object/dictionary (map)
-let mcCache = new Map<string, CacheValueType<any>>();
+const mcCache = new Map<string, CacheValueType<any>>();
 
 // secret keyCode for added security
 const keyCode = "mcconnect_20200320";
